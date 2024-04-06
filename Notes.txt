@@ -1,0 +1,35 @@
+How to proceed to make project
+
+# E-Commerce Website-
+
+# following are the pages and functionality:
+
+-Home Page, navihation, routing
+-List of entries - 
+ - Search ,filter, Sort,Pagination
+-an individual page for each entity
+-Cart
+-Payment Page
+Note- Add more function iteratively
+
+# what we are using to build this project
+-React Redux
+-JSON server
+-CSS Library - Chakra UI
+
+# Deployment
+
+# Flow:
+1.Intro
+2.Project Setup
+3.NavbarRouting
+4.JSOn server Setup
+5.Redux Intro and Setup
+6.Redux Thunk
+7.Listing entries
+8.Product Entity Component
+9.Single Entity Page
+10.Adding to Cart
+11.cart functionality
+12.Sort and filter -1
+ more...
