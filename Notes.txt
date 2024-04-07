@@ -73,4 +73,33 @@ export default Shoppage;
 -state can be change update through dispatching action in redux.
 -whenever we want to add,update or etc.in the redux we have to use dispatch.
 -whenever we want to get something from redux we have to use useSelector.
- 
+
+# Redux Fundamentals, Async Logic and Data Fetching:
+parting away the logic of async Fetching data from component to action type.
+
+# Redux - Thunk ?why.
+-In Redux, a "thunk" is a middleware that allows you to write action creators 
+that return a function instead of an action object. This function can then perform 
+asynchronous operations, such as API calls, and dispatch regular synchronous actions
+based on the results.
+-Thunk middleware intercepts these functions and gives them the ability to dispatch 
+actions themselves. This is particularly useful for handling complex asynchronous 
+logic, like fetching data from a server, without cluttering your components with 
+this logic.
+
+eg:
+const fetchData = () => {
+  return async (dispatch) => {
+    dispatch({ type: 'FETCH_DATA_REQUEST' });
+
+    try {
+      const response = await fetch('https://api.example.com/data');
+      const data = await response.json();
+
+      dispatch({ type: 'FETCH_DATA_SUCCESS', payload: data });
+    } catch (error) {
+      dispatch({ type: 'FETCH_DATA_FAILURE', payload: error.message });
+    }
+  };
+};
+
