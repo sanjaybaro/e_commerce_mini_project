@@ -33,3 +33,44 @@ Note- Add more function iteratively
 11.cart functionality
 12.Sort and filter -1
  more...
+
+#async and await / try catch for Shoppage
+```
+import React, { useEffect } from "react";
+
+function Shoppage() {
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch("https://e-com-json-api-mock.onrender.com/products");
+        if (!response.ok) {
+          throw new Error("Failed to fetch data");
+        }
+        const data = await response.json();
+        console.log(data);
+      } catch (err) {
+        console.log(err.message);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  return <div>Shoppage</div>;
+}
+
+export default Shoppage;
+```
+```
+ useEffect(() => {
+    fetch("https://e-com-json-api-mock.onrender.com/products")
+      .then((res) => res.json())
+      .then((data) => console.log(data))
+      .catch((err) => console.log(err.message));
+  }, []);  
+```  
+# LOGIC
+-state can be change update through dispatching action in redux.
+-whenever we want to add,update or etc.in the redux we have to use dispatch.
+-whenever we want to get something from redux we have to use useSelector.
+ 

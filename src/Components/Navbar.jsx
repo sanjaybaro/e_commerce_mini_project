@@ -13,14 +13,16 @@ const Navbar = () => {
       justify="center"
     >
       <Spacer />
-      <Image
-        src="https://www.flatheads.in/cdn/shop/files/Logo_Horizontal.png?v=1698929502&width=170"
-        alt="studs"
-        m={5}
-        fit="contain"
-      />
+      <Link to={"/"}>
+        <Image
+          src="https://www.flatheads.in/cdn/shop/files/Logo_Horizontal.png?v=1698929502&width=170"
+          alt="studs"
+          m={5}
+          fit="contain"
+        />
+      </Link>
       <Spacer />
-      <Link to={"/collections/all"} >
+      <Link to={"/collections/all"}>
         <Text px={4} py={2}>
           SHOP
         </Text>
