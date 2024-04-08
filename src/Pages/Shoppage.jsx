@@ -6,6 +6,7 @@ import { Text } from "@chakra-ui/react";
 import Filter from "../Components/Filter";
 import ProductCard from "../Components/ProductCard";
 import { Grid, GridItem } from "@chakra-ui/react";
+import { DNA } from "react-loader-spinner";
 
 function Shoppage() {
   const loading = useSelector((store) => store.loading);
@@ -25,11 +26,18 @@ function Shoppage() {
       <Text>Shop All</Text>
       <Filter />
       {loading ? (
-        <h1>Loading...</h1>
+        <DNA
+        visible={true}
+        height="200"
+        width="200"
+        ariaLabel="dna-loading"
+        wrapperStyle={{}}
+        wrapperClass="dna-wrapper"
+        />
       ) : error ? (
         <h1>Something went wrong, please try again later </h1>
       ) : (
-        <Grid templateColumns="repeat(3,1fr)" gap={6} >
+        <Grid templateColumns="repeat(3,1fr)" gap={6}>
           {products.length > 0 &&
             products.map((product) => (
               <ProductCard key={product.id} product={product} />

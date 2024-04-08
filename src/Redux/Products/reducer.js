@@ -1,32 +1,61 @@
-import { IS_ERROR, IS_LOADING, STORE_DATA } from "./actiontypes";
+import {
+  CURRENT_PRODUCT_ERROR,
+  CURRENT_PRODUCT_LOADING,
+  CURRENT_PRODUCT_SUCCESS,
+  PRODUCT_ERROR,
+  PRODUCT_LOADING,
+  PRODUCT_SUCCESS,
+} from "./actiontypes";
 
 const initialState = {
   loading: false,
   error: false,
   products: [],
+  currentProduct: {},
 };
 
 export const productReducer = (state = initialState, { type, payload }) => {
   switch (type) {
-    case IS_LOADING: {
+    case PRODUCT_LOADING: {
       return {
         ...state,
         loading: true,
       };
     }
-    case IS_ERROR: {
+    case PRODUCT_ERROR: {
       return {
         ...state,
         loading: false,
         error: true,
       };
     }
-    case STORE_DATA: {
+    case PRODUCT_SUCCESS: {
       return {
         ...state,
         loading: false,
         error: false,
         products: payload,
+      };
+    }
+    case CURRENT_PRODUCT_LOADING: {
+      return {
+        ...state,
+        loading: true,
+      };
+    }
+    case CURRENT_PRODUCT_ERROR: {
+      return {
+        ...state,
+        loading: false,
+        error: true,
+      };
+    }
+    case CURRENT_PRODUCT_SUCCESS: {
+      return {
+        ...state,
+        loading: false,
+        error: false,
+        currentProduct: payload,
       };
     }
     default: {

@@ -1,20 +1,27 @@
-import { IS_ERROR, IS_LOADING, STORE_DATA } from "./actiontypes";
+import {
+  CURRENT_PRODUCT_ERROR,
+  CURRENT_PRODUCT_LOADING,
+  CURRENT_PRODUCT_SUCCESS,
+  PRODUCT_ERROR,
+  PRODUCT_LOADING,
+  PRODUCT_SUCCESS,
+} from "./actiontypes";
 
 const handleLoading = () => {
   return {
-    type: IS_LOADING,
+    type: PRODUCT_LOADING,
   };
 };
 
 const handleError = () => {
   return {
-    type: IS_ERROR,
+    type: PRODUCT_ERROR,
   };
 };
 
-const storeData = (payload) => {
+const handleSuccess = (payload) => {
   return {
-    type: STORE_DATA,
+    type: PRODUCT_SUCCESS,
     payload,
   };
 };
@@ -27,7 +34,7 @@ const getData = () => (dispatch) => {
         "https://e-com-json-api-mock.onrender.com/products"
       );
       const data = await response.json();
-      dispatch(storeData(data));
+      dispatch(handleSuccess(data));
       // console.log(data);
     } catch (err) {
       console.log(err.message);
@@ -38,4 +45,41 @@ const getData = () => (dispatch) => {
   fetchData();
 };
 
-export { storeData, handleLoading, handleError, getData };
+//for singleproduct/currentproduct
+
+const handleCurrentPorductLoading = () => {
+  return {
+    type: CURRENT_PRODUCT_LOADING,
+  };
+};
+
+const handleCurrentProductError = () => {
+  return {
+    type: CURRENT_PRODUCT_ERROR,
+  };
+};
+
+const handleCurrentProductSuccess = (payload) => {
+  return { type: CURRENT_PRODUCT_SUCCESS, payload };
+};
+
+const getCurrentProductData = (id) => (dispatch) => {
+  dispatch(handleCurrentPorductLoading());
+  const fetchSingleData = async () => {
+    try {
+      const response = await fetch(
+        `https://e-com-json-api-mock.onrender.com/products/${id}`
+      );
+      const data = await response.json();
+      dispatch(handleCurrentProductSuccess(data));
+      // console.log(data);
+    } catch (err) {
+      console.log(err.message);
+      dispatch(handleCurrentProductError());
+    }
+  };
+
+  fetchSingleData();
+};
+
+export { getData, getCurrentProductData };

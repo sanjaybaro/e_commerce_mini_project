@@ -103,3 +103,7 @@ const fetchData = () => {
   };
 };
 
+# useof useState hook to change image hove effect making functions
+# use of useNavigate to redirect to single product page
+
+# using useParams to get single entity by id:
