@@ -28,7 +28,7 @@ const getData = () => (dispatch) => {
       );
       const data = await response.json();
       dispatch(storeData(data));
-      console.log(data);
+      // console.log(data);
     } catch (err) {
       console.log(err.message);
       dispatch(handleError());

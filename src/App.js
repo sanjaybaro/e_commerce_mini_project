@@ -7,7 +7,7 @@ function App() {
     <div className="App">
       <Navbar />
       <AllRoutes/>
-      <h1>Ecommerce Application</h1>
+      {/* <h1>Ecommerce Application</h1> */}
     </div>
   );
 }
