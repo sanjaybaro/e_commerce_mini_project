@@ -2,8 +2,19 @@ import { Flex, Spacer, Image, Text, Icon } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import { BsSearch, BsBasket3 } from "react-icons/bs";
 import { RiUserLine } from "react-icons/ri";
+import { useSelector } from "react-redux";
 
 const Navbar = () => {
+  const cart = useSelector((store) => store.cart.cart);
+  console.log(cart);
+  console.log(cart.length);
+  // const cartlength = (cart) => {
+  //   if (cart) {
+  //     return cart.length;
+  //   } else {
+  //     return 0;
+  //   }
+  // };
   return (
     <Flex
       bg={"tomato"}
@@ -61,7 +72,7 @@ const Navbar = () => {
       <Icon as={BsSearch} boxSize="20px" mx={6} />
       <Icon as={RiUserLine} boxSize="20px" mx={6} />
       <Icon as={BsBasket3} boxSize="20px" mx={6} />
-      <Text>0</Text>
+      <Text>{cart ? cart.length : 0}</Text>
       <Spacer />
     </Flex>
   );

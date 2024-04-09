@@ -5,11 +5,12 @@ import { Box, Button, Flex, HStack, Text } from "@chakra-ui/react";
 import { useParams } from "react-router-dom";
 import { DNA } from "react-loader-spinner";
 import ProductCard from "../Components/ProductCard";
+import { addToCart } from "../Redux/Cart/action";
 
 function SingleProductPage() {
-  const loading = useSelector((store) => store.loading);
-  const currentProduct = useSelector((store) => store.currentProduct);
-  const error = useSelector((store) => store.error);
+  const loading = useSelector((store) => store.product.loading);
+  const currentProduct = useSelector((store) => store.product.currentProduct);
+  const error = useSelector((store) => store.product.error);
   const dispatch = useDispatch();
   const { id } = useParams();
   const [selectedSize, setSelectedSize] = useState(false);
@@ -19,6 +20,15 @@ function SingleProductPage() {
       dispatch(getCurrentProductData(id));
     }
   }, [dispatch, id]);
+
+  const handleCart = () => {
+    let payload = {
+      ...currentProduct,
+      selectedSize,
+    };
+    // console.log(payload);
+    dispatch(addToCart(payload));
+  };
 
   if (loading) {
     return (
@@ -56,7 +66,13 @@ function SingleProductPage() {
             </Button>
           ))}
         </HStack>
-        <Button m={4} p={5} isDisabled={!selectedSize} bg="cyan">
+        <Button
+          m={4}
+          p={5}
+          isDisabled={!selectedSize}
+          bg="cyan"
+          onClick={handleCart}
+        >
           {!selectedSize ? "PLEASE SELECT A SIZE" : "ADD TO CART"}
         </Button>
       </Box>

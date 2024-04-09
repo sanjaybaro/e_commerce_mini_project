@@ -9,9 +9,9 @@ import { Grid, GridItem } from "@chakra-ui/react";
 import { DNA } from "react-loader-spinner";
 
 function Shoppage() {
-  const loading = useSelector((store) => store.loading);
-  const products = useSelector((store) => store.products);
-  const error = useSelector((store) => store.error);
+  const loading = useSelector((store) => store.product.loading);
+  const products = useSelector((store) => store.product.products);
+  const error = useSelector((store) => store.product.error);
   // console.log(products);
   const dispatch = useDispatch();
 
@@ -27,12 +27,12 @@ function Shoppage() {
       <Filter />
       {loading ? (
         <DNA
-        visible={true}
-        height="200"
-        width="200"
-        ariaLabel="dna-loading"
-        wrapperStyle={{}}
-        wrapperClass="dna-wrapper"
+          visible={true}
+          height="200"
+          width="200"
+          ariaLabel="dna-loading"
+          wrapperStyle={{}}
+          wrapperClass="dna-wrapper"
         />
       ) : error ? (
         <h1>Something went wrong, please try again later </h1>
